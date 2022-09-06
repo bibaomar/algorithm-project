@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class Main2{
+    public static void main(String[] args)
+    {
+        PizzaHut ph= new PizzaHut();                       // create object of PizzaHut class
+        Scanner sc= new Scanner(System.in);
+        int choice=0;
+
+        // add all the available pizzas to menu
+        ph.accept_menu("Super Papa's",135, 108, 70, 15);
+        ph.accept_menu("Pepperoni",135,108,70,14);
+        ph.accept_menu("Mexican Ole",135,108,70, 14);
+        ph.accept_menu("Margherita",107,77,47, 10);
+        ph.accept_menu("Mexican Green Wave",130,90,74, 20);
+        ph.accept_menu("Chicken Ranch ",145,115,77, 13);
+        ph.accept_menu("Chicken Paradise",140,95,80, 15);
+        ph.accept_menu("Pasta Pizza",155,105,85,20);
+        ph.accept_menu("Tuna",140,105,90, 12);
+        ph.accept_menu("Chicken Barbeque",160,110,88, 20);
+
+        // add registered customers
+        ph.accept_customer("Saeed", " Shoubra,Orabi Bridge st 30 ",2, "01288922937");
+        ph.accept_customer("Mina", "Maadi,Sakr Qoreesh ",3, "01158879527");
+        ph.accept_customer("Mohamed", "Nasr City Abbas el 3kad st  223 ",5, "012345678901");
+        
+        int main_choice_mismatch=0;
+        do
+        {
+            ph.clearScreen();
+            System.out.println("\n\t\t\t\t\t"+ph.pizza_hut_logo+"\n");  // print shop logo
+            
+            // Display options to customer
+            main_choice_mismatch=0;
+            try
+            {
+                System.out.print("\n\t\t\t\t\tWhat would you like to do? \n\t\t\t\t\t1. Place an order\n\t\t\t\t\t2. View menu card\n\t\t\t\t\t3. Exit\n\t\t\t\t");
+                choice= sc.nextInt();
+            }
+            catch(InputMismatchException e)  // catch invalid input
+            {
+                sc.next();
+                System.out.print("\n\t\t\t\tIncorrect choice! Please enter again!");
+                main_choice_mismatch=1;
+            }
+
+            switch(choice)
+            {
+                case 1: ph.clearScreen();
+                        ph.take_order();
+                        break;
+                case 2: ph.clearScreen();
+                        ph.display_menu();
+                        System.out.print("\n\n\t\t\t\t\t(Enter 0 to return to main menu) ");
+                        sc.nextInt();
+                        break;
+                case 3: break;
+                default: System.out.println("\n\t\t\t\t\tInvalid choice! Please enter again.");
+            }
+        }while(main_choice_mismatch==1 || choice!=3);
+
+    }
+}
